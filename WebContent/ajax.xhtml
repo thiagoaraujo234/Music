@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Hello, World!</title>
+</h:head>
+<h:body>
+	<h1>Hello, world!</h1>
+	<h:form>
+		<h:inputText id="input" value="#{ajaxController.nome}">
+			<f:ajax execute="input" render="label input" event="mouseout"
+				listener="#{ajaxController.imprimir()}" />
+		</h:inputText>
+
+		<h:commandButton value="Click"
+			actionListener="#{ajaxController.imprimir()}">
+			<f:ajax execute="input" render="label input" />
+		</h:commandButton>
+		<h:outputLabel id="label" value="#{ajaxController.nome}" />
+	</h:form>
+</h:body>
+</html>

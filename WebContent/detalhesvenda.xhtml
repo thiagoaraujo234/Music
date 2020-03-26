@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+		<center>
+			<h1 class="display-4">Detalhes de Vendas</h1>
+			<br />
+			<h:form styleClass="form-horizontal">
+				<h:messages id="messages" style="color:red" globalOnly="false" />
+
+				<div class="compra">
+					<h:outputLabel value="Cliente: " styleClass="control-label" />
+					<h:outputText value=" #{detalheVendaController.venda.usuario.nome}"
+						styleClass="control-label" />
+					<h:outputLabel value="Data da Venda: " styleClass="control-label" />
+					<h:outputText value=" #{detalheVendaController.venda.data}"
+						styleClass="control-label">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+					<h:outputLabel value="Total da venda: " styleClass="control-label" />
+					<h:outputText value=" #{detalheVendaController.venda.totalVenda}"
+						styleClass="control-label">
+						<f:convertNumber locale="pt_BR" currencySymbol="R$"
+							type="currency" />
+					</h:outputText>
+				</div>
+				<div class="venda">
+					<h:panelGrid id="panelDataTable">
+						<h:outputLabel value="Itens vendidos " styleClass="control-label" />
+						<h:dataTable id="dataTable"
+							value="#{detalheVendaController.venda.listaItemVenda}" var="obj"
+							styleClass="table" headerClass="table-header"
+							rowClasses="table-odd-row, table-even-row">
+							<h:column>
+								<f:facet name="header">Nome</f:facet>
+								<h:outputLabel value="#{obj.produto.nome}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">Valor</f:facet>
+								<h:outputLabel value="#{obj.valor}">
+									<f:convertNumber locale="pt_BR" currencySymbol="R$"
+										type="currency" />
+								</h:outputLabel>
+							</h:column>
+
+						</h:dataTable>
+
+					</h:panelGrid>
+				</div>
+			</h:form>
+			<h:commandButton styleClass="btn btn-link" value="Voltar"
+				onclick="window.history.back(); return false;" />
+		</center>
+	</ui:define>
+</ui:composition>
+
+</html>

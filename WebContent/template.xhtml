@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="template.css" />
+	<title>Music Shop</title>
+</h:head>
+
+<h:body>
+	<div class="wrapper">
+		<div class="box navbar header">
+			<h1>Music Shop</h1>
+			<div class="logo">
+				<h:graphicImage value="/resources/images/logo.png" width="100px" />
+			</div>
+			<div>
+				<h:form>
+					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}" />
+					<h:commandLink value=" (Sair)"
+						action="#{templateController.encerrarSessao}" style="color:white" />
+				</h:form>
+			</div>
+		</div>
+		<div class="box sidebar" style="text-align: center;">
+			<ui:insert name="menu">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="inicio.xhtml">Inicio</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#conteudoNavbarSuportado"
+						aria-controls="conteudoNavbarSuportado" aria-expanded="false"
+						aria-label="Alterna navegação">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item"><a class="nav-link"
+								href="consultaproduto.xhtml">Consultar Produto</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="consultausuario.xhtml">Consultar Usuario</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="produto.xhtml">Cadastrar Produto</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="usuario.xhtml">Cadastrar Usuario</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="vendaproduto.xhtml">Produtos</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="carrinho.xhtml">Carrinho</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="historico.xhtml">Historico de Vendas</a></li>
+						</ul>
+					</div>
+				</nav>
+			</ui:insert>
+		</div>
+		<div class="box content">
+			<br />
+			<ui:insert name="conteudo">
+				<center>
+					<h1>BEM VINDO</h1>
+				</center>
+			</ui:insert>
+		</div>
+		<div class="box footer" style="text-align: center;">
+			<h:outputText value="2019 - UNITINS - Todos os direitos reservados." />
+		</div>
+	</div>
+</h:body>
+</html>

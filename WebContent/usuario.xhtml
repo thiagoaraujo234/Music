@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+
+		<center>
+			<h1 class="display-4">Cadastro de Usuário</h1>
+			<br />
+			<h:form id="formPrincipal">
+				<h:messages id="messages" infoStyle="color:green"
+					warnStyle="color:orange" errorStyle="color:red" globalOnly="false" />
+				<h:panelGrid id="panelPrincipal" columns="2">
+					<h:outputLabel value="Nome: " />
+					<h:inputText class="form-control" type="text" placeholder="Input padrão" id="inputNome"
+						value="#{usuarioController.usuario.nome}" />
+
+					<h:outputLabel value="Login: " />
+					<h:panelGrid columns="2">
+						<h:inputText class="form-control" type="text" placeholder="Input padrão" id="inputLogin"
+							value="#{usuarioController.usuario.login}"
+							requiredMessage="O campo login não pode ser nulo.">
+							<f:validateRequired />
+						</h:inputText>
+						<h:message for="inputLogin" style="color:red" />
+					</h:panelGrid>
+
+					<h:outputLabel value="Senha: " />
+					<h:inputSecret class="form-control" type="text" placeholder="Input padrão" value="#{usuarioController.usuario.senha}" />
+
+					<h:outputLabel value="Data de Aniversário: " />
+					<h:inputText class="form-control" type="text" placeholder="Input padrão" id="inputData"
+						value="#{usuarioController.usuario.dataAniversario}">
+						<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+						<f:ajax resetValues="true" />
+					</h:inputText>
+					<h:outputLabel value="Usuario ativo: " />
+					<h:selectBooleanCheckbox id="checkAtivo"
+						value="#{usuarioController.usuario.ativo}" />
+
+					<h:outputLabel value="DDD: " />
+					<h:inputText
+						class="form-control" type="text" placeholder="Input padrão" value="#{usuarioController.usuario.telefone.codigoArea}" />
+					<h:outputLabel value="Telefone: " />
+					<h:inputText class="form-control" type="text" placeholder="Input padrão" value="#{usuarioController.usuario.telefone.numero}" />
+
+					<h:outputLabel value="Endereço: " />
+					<h:inputText
+					class="form-control" type="text" placeholder="Input padrão"	value="#{usuarioController.usuario.endereco.logradouro}" />
+
+					<h:outputLabel value="Cidade: " />
+					<h:inputText
+					class="form-control" type="text" placeholder="Input padrão"	value="#{usuarioController.usuario.endereco.cidade}" />
+
+					<h:outputLabel value="Estado: " />
+					<h:inputText
+					class="form-control" type="text" placeholder="Input padrão"	value="#{usuarioController.usuario.endereco.estado}" />
+						<h:outputLabel value="Numero: " />
+					<h:inputText
+					class="form-control" type="text" placeholder="Input padrão"	value="#{usuarioController.usuario.endereco.numero}" />
+						<h:outputLabel value="CEP: " />
+					<h:inputText class="form-control" type="text"
+						placeholder="Input padrão"
+						value="#{usuarioController.usuario.endereco.cep}" />
+
+					<h:outputLabel value="Perfil: " />
+					<h:selectOneMenu class="form-control" value="#{usuarioController.usuario.perfil}">
+						<f:selectItem itemLabel="Selecione ...." />
+						<f:selectItems value="#{usuarioController.listaPerfil}"
+							var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+				<br />
+				<h:panelGrid id="panelBotoes" columns="4">
+					<h:commandButton styleClass="btn btn-success" value="Incluir"
+						disabled="#{usuarioController.usuario.id != null}"
+						actionListener="#{usuarioController.incluir()}">
+						<f:ajax render="formPrincipal" execute="panelPrincipal"
+							resetValues="true" />
+
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-primary" value="Alterar"
+						disabled="#{usuarioController.usuario.id == null}"
+						actionListener="#{usuarioController.alterar()}">
+						<f:ajax render="formPrincipal messages" execute="formPrincipal" />
+					</h:commandButton>
+
+					<h:commandButton styleClass="btn btn-danger" value="Excluir"
+						disabled="#{usuarioController.usuario.id == null}"
+						actionListener="#{usuarioController.excluir()}">
+						<f:ajax render="@all" execute="@this" />
+					</h:commandButton>
+
+					<h:commandButton styleClass="btn" value="Limpar"
+						action="#{usuarioController.limpar()}">
+						<f:ajax render="formPrincipal" execute="@this" />
+					</h:commandButton>
+				</h:panelGrid>
+			</h:form>
+			<h:commandButton styleClass="btn btn-link" value="Voltar"
+				onclick="window.history.back(); return false;" />
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

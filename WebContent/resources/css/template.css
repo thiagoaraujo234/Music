@@ -1,0 +1,120 @@
+body {
+	margin: 2px;
+	background-color: #f4f4f4;
+}
+
+.sidebar {
+	grid-area: sidebar;
+}
+
+.content {
+	grid-area: content;
+}
+
+.header {
+	grid-area: header;
+}
+
+.footer {
+	grid-area: footer;
+}
+
+.wrapper {
+	color: #000000;
+	grid-gap: 1em;
+	grid-template-areas: "header" "sidebar" "content" "footer";
+}
+
+@media only screen and (min-width: 500px) {
+	.wrapper {
+		grid-template-columns: 20% auto;
+		grid-template-areas: "header   header" "sidebar  sidebar"
+			"content content" "footer   footer";
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	.wrapper {
+		grid-gap: 0px;
+		grid-template-columns: 20% 40% 40%;
+		grid-template-areas: "header  header  header" "sidebar sidebar sidebar"
+			"content content content" "footer  footer  footer";
+		max-width: 100%;
+		min-height: 100%;
+		padding: 0;
+		margin: 0 auto;
+	}
+}
+
+.box {
+	border-radius: 0px;
+	padding: 0px;
+	font-size: 90%;
+	margin: 0;
+	border: 0;
+}
+
+.box navbar header {
+	text-align: center;
+}
+
+.header {
+	color: #ffffff;
+	background-color: #800000;
+	vertical-align: middle;
+	text-align: center;
+	height: 80px;
+}
+
+.footer {
+	border-top: 1px solid #333;
+	bottom: 0;
+	left: 0;
+	height: 30px;
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	color: white;
+}
+
+.nav-item {
+	padding-left: 60px;
+}
+
+.compra {
+	margin-right: 20%;
+	margin-top: 80px;
+	width: 250px;;
+	text-transform: uppercase;
+	font-family: Futura;
+	font-size: 15px;
+}
+
+.venda {
+	margin-top: -100px;
+	margin-left: 300px;
+}
+.logo{
+	margin-right: 10%;
+}
+.endereco{
+	margin-right: 20%;
+	
+}.cadastro{
+	float: left;
+	margin-left: 27%;
+}
+.botaomenu{
+	float:left;
+	margin-top: 50px;
+	margin-left: -120px;
+	
+}
+.voltar{
+	float:left;
+	margin-top: 100px;
+	margin-left: -190px;
+}
+.login {
+	margin-top: 10%;
+}

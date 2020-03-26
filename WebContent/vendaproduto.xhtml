@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+
+		<center>
+			<h1 class="display-4">Venda de Produtos</h1>
+			<br />
+			<h:form>
+				<h:messages style="color:green" />
+				<h:panelGrid id="panelForm" columns="3">
+
+					<h:outputLabel value="Nome do Produto: " />
+					<h:inputText class="form-control" type="text" placeholder="Input padrão" value="#{vendaProdutoController.nome}" />
+
+					<h:commandButton styleClass="btn" value="Pesquisar"
+						actionListener="#{vendaProdutoController.pesquisar}">
+						<f:ajax execute="panelForm" render="@all" />
+					</h:commandButton>
+
+				</h:panelGrid>
+				<br />
+				<h:panelGrid id="panelDataTable">
+					<h:dataTable id="dataTable"
+						value="#{vendaProdutoController.listaProduto}" var="obj"
+						styleClass="table" headerClass="table-header"
+						rowClasses="table-odd-row, table-even-row">
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputLabel value="#{obj.nome}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Valor</f:facet>
+							<h:outputLabel value="#{obj.valor}">
+								<f:convertNumber locale="pt_BR" currencySymbol="R$"
+									type="currency" />
+							</h:outputLabel>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton styleClass="btn btn-success"
+								value="Adicionar Carrinho"
+								actionListener="#{vendaProdutoController.adicionar(obj.id)}">
+								<f:ajax render="@all" execute="@this" />
+							</h:commandButton>
+						</h:column>
+
+					</h:dataTable>
+				</h:panelGrid>
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>
+
+</html>

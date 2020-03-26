@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+
+		<center>
+			<h1 class="display-4">Carrinho</h1>
+			<br />
+			<h:form>
+				<h:messages style="color:red" />
+				<h:panelGrid id="panelDataTable">
+					<h:dataTable id="dataTable"
+						value="#{carrinhoController.venda.listaItemVenda}" var="obj"
+						styleClass="table" headerClass="table-header"
+						rowClasses="table-odd-row, table-even-row">
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputLabel value="#{obj.produto.nome}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Valor</f:facet>
+							<h:outputLabel value="#{obj.valor}">
+								<f:convertNumber locale="pt_BR" currencySymbol="R$"
+									type="currency" />
+							</h:outputLabel>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton styleClass="btn btn-danger" value="Remover"
+								actionListener="#{carrinhoController.remover(obj.id)}">
+								<f:ajax render="@form" execute="@this" />
+							</h:commandButton>
+						</h:column>
+
+					</h:dataTable>
+				</h:panelGrid>
+				<br />
+				<h:commandButton styleClass="btn btn-success"
+					value="Finalizar Venda"
+					actionListener="#{carrinhoController.finalizar}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>
+
+</html>
